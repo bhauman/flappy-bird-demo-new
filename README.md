@@ -3,6 +3,8 @@
 This is the original Flappy Bird Demo updated to use the latest
 incarnation of Figwheel.
 
+![screenshot](https://user-images.githubusercontent.com/2624/42334602-b4e0cc1a-804b-11e8-9d44-4b38ee4697f6.png)
+
 Read the [blog post](http://rigsomelight.com/2014/05/01/interactive-programming-flappy-bird-clojurescript.html) about this flappy bird demo.
 
 Watch the 6 minute [video](https://www.youtube.com/watch?v=KZjFVdU8VLI)
