@@ -52,3 +52,6 @@ Copyright © 2018 Bruce Hauman
 
 Distributed under the [Eclipse Public License](LICENSE) either version 1.0 or any
 later version.
+
+
+[CLI Tools]: https://clojure.org/guides/getting_started#_installation_on_mac_via_code_brew_code
