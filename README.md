@@ -31,7 +31,7 @@ $ lein fig:build
 
 ### Clojure Tools
 
-First we will want to [install](CLI tools) the `clj` and `clojure` [command line
+First we will want to [install][CLI tools] the `clj` and `clojure` [command line
 tools][CLI tools].
 
 Clone this repo:
