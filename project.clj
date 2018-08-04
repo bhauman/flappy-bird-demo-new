@@ -15,7 +15,8 @@
   
   :clean-targets ^{:protect false} ["target/public"]
   
-  :profiles {:dev {:dependencies [[com.bhauman/figwheel-main "0.1.4"]]}}
+  :profiles {:dev {:dependencies [[com.bhauman/figwheel-main "0.1.5"]
+                                  [com.bhauman/rebel-readline-cljs "0.1.4"]]}}
 
   :aliases {"fig"       ["trampoline" "run" "-m" "figwheel.main"]
             "fig:build" ["trampoline" "run" "-m" "figwheel.main" "-b" "flappy" "-r"]})

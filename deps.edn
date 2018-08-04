@@ -5,6 +5,7 @@
         cljsjs/react-dom {:mvn/version "15.3.1-0"}        ;; for sablono
         cljsjs/react {:mvn/version "15.3.1-0"}            ;; for sablono
         sablono {:mvn/version "0.7.5"}
-        com.bhauman/figwheel-main {:mvn/version "0.1.4"}}
+        com.bhauman/figwheel-main {:mvn/version "0.1.5"}
+        com.bhauman/rebel-readline-cljs {:mvn/version "0.1.4"}}
  :paths ["src" "resources" "target"]
  :aliases {:build {:main-opts ["-m" "figwheel.main" "-b" "flappy" "-r"]}}}
