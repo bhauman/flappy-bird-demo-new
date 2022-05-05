@@ -1,7 +1,7 @@
 # flappy-bird-demo
 
-This is the original Flappy Bird Demo updated to use the latest
-incarnation of Figwheel.
+This is the original Flappy Bird Demo updated to use the newer versions
+of Figwheel and ClojureScript.
 
 ![screenshot](https://user-images.githubusercontent.com/2624/42334602-b4e0cc1a-804b-11e8-9d44-4b38ee4697f6.png)
 
@@ -28,7 +28,6 @@ Change into the flappy-bird-demo-new directory and run:
 ```shell
 $ lein fig:build
 ```
-
 #### Via Clojure Tools
 
 First we will want to [install][CLI tools] the `clj` and `clojure` [command line
@@ -43,12 +42,22 @@ $ git clone https://github.com/bhauman/flappy-bird-demo-new.git
 Change into the flappy-bird-demo-new directory and run:
 
 ```shell
-$ clj -A:build
+$ clj -M:build
 ```
+
+## Edit the code and see real time updates
+
+You can now open the
+`flappy-bird-demo-new/src/flappy_bird_demo/core.cls` file in your
+favorite text editor. If you make a change and save the file you should
+see the changes in the running flappy bird game immediately.
+
+For example on find the word `"START"` and change it to `"HEY"` and
+watch it change immediately without reloading the program.
 
 ## License
 
-Copyright © 2018 Bruce Hauman
+Copyright © 2022 Bruce Hauman
 
 Distributed under the [Eclipse Public License](LICENSE) either version 1.0 or any
 later version.

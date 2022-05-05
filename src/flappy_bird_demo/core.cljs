@@ -2,12 +2,7 @@
   (:require
    [cljsjs.react]
    [cljsjs.react.dom]
-   [sablono.core :as sab :include-macros true]
-   [cljs.core.async :refer [<! chan sliding-buffer put! close! timeout]])
-  (:require-macros
-   [cljs.core.async.macros :refer [go-loop go]]))
-
-(enable-console-print!)
+   [sablono.core :as sab :include-macros true]))
 
 (defn floor [x] (.floor js/Math x))
 
@@ -15,8 +10,8 @@
   (floor (+ start-pos (* time vel))))
 
 (def horiz-vel -0.15)
-(def gravity 0.05)
-(def jump-vel 21)
+(def gravity 0.04)
+(def jump-vel 11)
 (def start-y 312)
 (def bottom-y 561)
 (def flappy-x 212)
@@ -40,7 +35,7 @@
 
 (defn reset-state [_ cur-time]
   (-> starting-state
-      (update-in [:pillar-list] (fn [pls] (map #(assoc % :start-time cur-time) pls)))
+      (update :pillar-list (partial map #(assoc % :start-time cur-time)))
       (assoc
           :start-time cur-time
           :flappy-start-time cur-time
@@ -48,12 +43,11 @@
 
 (defonce flap-state (atom starting-state))
 
-(defn curr-pillar-pos [cur-time {:keys [pos-x start-time] }]
+(defn curr-pillar-pos [cur-time {:keys [pos-x start-time]}]
   (translate pos-x horiz-vel (- cur-time start-time)))
 
 (defn in-pillar? [{:keys [cur-x]}]
-  (and (>= (+ flappy-x flappy-width)
-           cur-x)
+  (and (>= (+ flappy-x flappy-width) cur-x)
        (< flappy-x (+ cur-x pillar-width))))
 
 (defn in-pillar-gap? [{:keys [flappy-y]} {:keys [gap-top]}]
@@ -155,18 +149,18 @@
 (defn px [n] (str n "px"))
 
 (defn pillar [{:keys [cur-x pos-x upper-height lower-height]}]
-  [:div.pillars
-   [:div.pillar.pillar-upper {:style {:left (px cur-x)
+  (sab/html
+   [:div.pillars
+    [:div.pillar.pillar-upper {:style {:left (px cur-x)
                                        :height upper-height}}]
-   [:div.pillar.pillar-lower {:style {:left (px cur-x)
-                                       :height lower-height}}]])
+    [:div.pillar.pillar-lower {:style {:left (px cur-x)
+                                       :height lower-height}}]]))
 
 (defn time-loop [time]
   (let [new-state (swap! flap-state (partial time-update time))]
     (when (:timer-running new-state)
-      (go
-       (<! (timeout 30))
-       (.requestAnimationFrame js/window time-loop)))))
+      (.requestAnimationFrame js/window time-loop))))
+
 
 (defn start-game []
   (.requestAnimationFrame
@@ -183,9 +177,9 @@
                                          (.preventDefault e))}
              [:h1.score score]
              (if-not timer-running
-               [:a.start-button {:onClick #(start-game)}
-                (if (< 1 jump-count) "RESTART" "START")]
-               [:span])
+               (sab/html [:a.start-button {:onClick #(start-game)}
+                (if (< 1 jump-count) "RESTART" "START")])
+               (sab/html [:span]))
              [:div (map pillar pillar-list)]
              [:div.flappy {:style {:top (px flappy-y)}}]
              [:div.scrolling-border {:style { :background-position-x (px border-pos)}}]]))
